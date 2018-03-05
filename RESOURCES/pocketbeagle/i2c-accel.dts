@@ -20,13 +20,10 @@
 		__overlay__ {
 			#address-cells = <1>;
 			#size-cells = <0>;
-			mma8452@1c {
+			mma8453@1c {
 				status = "okay";
-				compatible = "fsl,mma8452";
+				compatible = "fsl,mma8453";
 				reg = <0x1c>;
-				interrupt-parent = <&gpio0>;
-				interrupts = <26 0>;
-				interrupt-names = "INT1";
 			};
 		};
 	};
