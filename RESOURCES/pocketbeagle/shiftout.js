@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // Based on https://groups.google.com/forum/#!category-topic/beagleboard/iT3JsATQIjI
 
 //# fekerr 20180227
