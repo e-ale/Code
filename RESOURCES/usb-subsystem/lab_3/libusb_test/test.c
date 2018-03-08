@@ -87,6 +87,8 @@ int main(int argc, char **argv)
 	unsigned char *buf = calloc(1, buflen);
 	int actual_length;
 
+	memset(buf, 0xa0, buflen);
+
 	printf("Sending one transfer\n");
 
 	/* Send one transfer to the device */

@@ -315,13 +315,13 @@ static struct thread {
 		0, 0, NULL, 0
 	},
 	{
-		"ep1", 8 * 1024,
+		"ep1", 512,
 		fill_in_buf, "<in>",
 		write_wrap, NULL,
 		0, 0, NULL, 0
 	},
 	{
-		"ep2", 8 * 1024,
+		"ep2", 512,
 		read_wrap, NULL,
 		empty_out_buf, "<out>",
 		0, 0, NULL, 0
@@ -478,12 +478,27 @@ fill_in_buf(struct thread *ignore, void *buf, size_t nbytes)
 static ssize_t
 empty_out_buf(struct thread *ignore, const void *buf, size_t nbytes)
 {
+	size_t len = nbytes;
+
+	(void)ignore;
+
+	printf("Received transfer...\n");
+	size_t i;
+	for (i = 0; i < nbytes; i++) {
+		printf("%02hhx ", ((__u8*)buf)[i]);
+		if ((i+1) % 8 == 0)
+			printf("   ");
+		if ((i+1) % 16 == 0)
+			printf("\n");
+	}
+	printf("\n\n");
+	fflush(stdout);
+
+#if 0 ////////////////
 	const __u8 *p;
 	__u8 expected;
 	ssize_t ret;
 	size_t len;
-
-	(void)ignore;
 
 	switch (pattern) {
 	case PAT_ZERO:
@@ -521,7 +536,7 @@ invalid:
 		errno = EILSEQ;
 		return -1;
 	}
-
+#endif //////////////////
 	return len;
 }
 
