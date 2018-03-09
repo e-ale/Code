@@ -1,0 +1,30 @@
+/* https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/iio/accel/mma8452.txt */
+
+/dts-v1/;
+/plugin/;
+/ {
+	fragment@0 {
+		target = <&ocp>;
+		__overlay__ {
+			P1_34_pinmux {
+				status = "disabled";
+			};
+			P1_31_pinmux {
+				status = "disabled";
+			};
+		};
+	};
+
+	fragment@1 {
+		target = <&i2c2>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			mma8453@1c {
+				status = "okay";
+				compatible = "fsl,mma8453";
+				reg = <0x1c>;
+			};
+		};
+	};
+};

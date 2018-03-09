@@ -1,0 +1,27 @@
+LAB 1 (demonstrating user-space instantiation)
+----------------------------------------------
+make
+sudo su
+echo foo 0x1c > /sys/bus/i2c/devices/i2c-2/new_device
+insmod lab1.ko
+dmesg | tail
+rmmod lab1
+echo 0x1c > /sys/bus/i2c/devices/i2c-2/delete_device
+exit
+
+LAB 2 (demonstrating devicetree instantiation)
+----------------------------------------------
+make
+sudo insmod lab2.ko
+cat i2c-foo.sh
+cat i2c-foo.dts
+sudo ./i2c-foo.sh
+dmesg | tail
+sudo rmdir /sys/kernel/config/device-tree/overlays/foo
+sudo rmmod lab2
+
+LAB 3 (loading the iio driver)
+------------------------------
+cat i2c-accel.sh
+cat i2c-accel.dts
+sudo ./i2c-accel.sh
