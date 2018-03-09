@@ -43,7 +43,7 @@ echo -ne "\x40\x12\xc0" | sudo tee /dev/spidev2.1 | xxd
 echo -ne "\x40\x13\xc0" | sudo tee /dev/spidev2.1 | xxd
 ```
 
-# I2C accelerometer (mma8452)
+# I2C accelerometer (mma8453)
 ```sh
 sudo mkdir -p /sys/kernel/config/device-tree/overlays/accel
 sudo dtc -W no-unit_address_vs_reg -@ -o /sys/kernel/config/device-tree/overlays/accel/dtbo <<EOF
@@ -56,7 +56,7 @@ sudo dtc -W no-unit_address_vs_reg -@ -o /sys/kernel/config/device-tree/overlays
       #address-cells = <1>;
       #size-cells = <0>;
       accel@1c {
-	compatible = "fsl,mma8452";
+	compatible = "fsl,mma8453";
         reg = <0x1c>;
       };
     };
@@ -109,3 +109,29 @@ cd /var/lib/cloud9/examples/extras/pru
 make TARGET=hello-pru PRUN=pru0
 make TARGET=hello-pru PRUN=pru1
 ```
+
+# I2C accelerometer (Old revision 0 board with mma8452)
+```sh
+sudo mkdir -p /sys/kernel/config/device-tree/overlays/accel
+sudo dtc -W no-unit_address_vs_reg -@ -o /sys/kernel/config/device-tree/overlays/accel/dtbo <<EOF
+/dts-v1/;
+/plugin/;
+/ {
+  fragment@0 {
+    target = <&i2c2>;
+    __overlay__ {
+      #address-cells = <1>;
+      #size-cells = <0>;
+      accel@1c {
+	compatible = "fsl,mma8452";
+        reg = <0x1c>;
+      };
+    };
+  };
+};
+EOF
+sleep 2
+cd /sys/bus/iio/devices/iio\:device1
+watch -n0 sudo cat in_accel_x_raw in_accel_y_raw in_accel_z_raw 
+```
+
