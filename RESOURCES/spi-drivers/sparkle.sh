@@ -1,5 +1,7 @@
-while [ 1 ]
+#!/bin/sh
+
+while true
 do
-./write-digit.sh h h
-./write-digit.sh i i
+	./write-digit.sh h h
+	./write-digit.sh i i
 done

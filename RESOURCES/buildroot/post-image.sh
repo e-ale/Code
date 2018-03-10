@@ -1,10 +1,10 @@
 #!/bin/sh
 # 2018, Michael Welling <mwelling@ieee.org>
 
-BOARD_DIR="$(dirname $0)"
+BOARD_DIR=$(dirname "$0")
 
 # copy the uEnv.txt to the output/images directory
-cp ${BOARD_DIR}/uEnv.txt ${BINARIES_DIR}/uEnv.txt
+cp "${BOARD_DIR}/uEnv.txt" "${BINARIES_DIR}/uEnv.txt"
 
 GENIMAGE_CFG="${BOARD_DIR}/genimage.cfg"
 GENIMAGE_TMP="${BUILD_DIR}/genimage.tmp"
