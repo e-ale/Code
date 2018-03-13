@@ -7,5 +7,5 @@ fi
 mkdir -p /sys/kernel/config/device-tree/overlays/accel
 dtc -W no-unit_address_vs_reg -@ -o /sys/kernel/config/device-tree/overlays/accel/dtbo i2c-accel.dts
 sleep 2
-cd "/sys/bus/iio/devices/iio\:device1"
-watch -n0 cat in_accel_x_raw in_accel_y_raw in_accel_z_raw 
+cd "/sys/bus/iio/devices/iio:device1"
+watch -n0 cat in_accel_x_raw in_accel_y_raw in_accel_z_raw
