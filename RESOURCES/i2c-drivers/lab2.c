@@ -4,6 +4,8 @@
 
 static int foo_probe(struct i2c_client *client, const struct i2c_device_id *id)
 {
+	int ret;
+
 	pr_info("foo_probe called\n");
 
 	if (client->dev.of_node) {
