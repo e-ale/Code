@@ -10,6 +10,12 @@ static int foo_probe(struct i2c_client *client, const struct i2c_device_id *id)
 		pr_info("device tree instantiated probe. data = %x\n",
 			(unsigned int)of_device_get_match_data(&client->dev));
 	}
+
+	ret = i2c_smbus_read_byte_data(client, 0x0d);
+	pr_info("i2c read byte = %x\n", ret);
+	if (ret < 0)
+		return ret;
+
 	return 0;
 }
 
