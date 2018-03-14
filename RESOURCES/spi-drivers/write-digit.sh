@@ -29,6 +29,7 @@ getbits () {
         	g) bits="0 0 0 0 0 0 0" ;;
         	h) bits="1 0 1 0 1 0 1" ;;
         	i) bits="0 1 0 1 0 1 0" ;;
+        	_) bits="0 0 0 0 0 0 0" ;;
 	esac
  	
 	echo "$bits"
