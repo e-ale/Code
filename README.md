@@ -1,6 +1,6 @@
 You can find supporting files for the respective E-ALE talks as follows:
 
-* RESOURCES/
+# RESOURCES/
     - pocketbeagle
     - modules-kbuild
     - u-boot
